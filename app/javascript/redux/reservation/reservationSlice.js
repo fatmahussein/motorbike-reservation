@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const URL_API = '/api/v1/reservations';
 
+// Add Reservation Thunk
 export const addReservation = createAsyncThunk('reservations/addReservation', async (reservationData) => {
   try {
     const response = await fetch(URL_API, {
@@ -24,6 +25,7 @@ export const addReservation = createAsyncThunk('reservations/addReservation', as
   }
 });
 
+// Get Reservations Thunk
 export const getReservations = createAsyncThunk(
   'reservations/getReservations',
   async (_, thunkAPI) => {
@@ -36,6 +38,29 @@ export const getReservations = createAsyncThunk(
       });
 
       return resp.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+// Cancel Reservation Thunk
+export const cancelReservation = createAsyncThunk(
+  'reservations/cancelReservation',
+  async (reservationId, thunkAPI) => {
+    try {
+      const response = await axios.delete(`${URL_API}/${reservationId}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${JSON.parse(localStorage.getItem('acess-token'))?.token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      return { id: reservationId };
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -69,7 +94,6 @@ export const reservationSlice = createSlice({
       .addCase(getReservations.pending, (state) => {
         state.isLoading = true;
       })
-
       .addCase(getReservations.fulfilled, (state, action) => {
         const newContent = [];
         const keys = Object.keys(action.payload);
@@ -85,6 +109,18 @@ export const reservationSlice = createSlice({
       .addCase(getReservations.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload.reservation;
+      })
+      .addCase(cancelReservation.pending, (state) => {
+        state.isLoading = true;
+        state.error = undefined;
+      })
+      .addCase(cancelReservation.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.content = state.content.filter(reservation => reservation.id !== action.payload.id);
+      })
+      .addCase(cancelReservation.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       });
   },
 });

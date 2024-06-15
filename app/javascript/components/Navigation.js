@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import '../assets/css/style.css';
+import { logoutUser } from '../redux/user/userSlice';
 
 function Navigation() {
   const [isNavOpen, setNavOpen] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const toggleNav = () => {
     setNavOpen(!isNavOpen);
+  };
+
+  const handleLogout = async () => {
+    await dispatch(logoutUser());
+    navigate('/login');
   };
 
   return (
@@ -35,6 +44,9 @@ function Navigation() {
             <NavLink to="/motorbikes/list" activeClassName="active" onClick={toggleNav}>
               Delete motorcycle
             </NavLink>
+            <NavLink to="/login" activeClassName="active" onClick={handleLogout}>
+              Sign Out
+            </NavLink>
           </nav>
         </div>
 
@@ -50,7 +62,6 @@ function Navigation() {
         </div>
       </header>
     </>
-
   );
 }
 
