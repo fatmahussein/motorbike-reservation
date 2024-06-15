@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 const AddMotorbikeForm = ({ onAddMotorbike }) => {
   const [formData, setFormData] = useState({
@@ -11,7 +12,7 @@ const AddMotorbikeForm = ({ onAddMotorbike }) => {
   });
 
   const [formErrors, setFormErrors] = useState({});
-
+ const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -41,6 +42,7 @@ const AddMotorbikeForm = ({ onAddMotorbike }) => {
         price: '',
         description: '',
       });
+      navigate('/'); 
     } else {
       // Set form errors
       setFormErrors(errors);
