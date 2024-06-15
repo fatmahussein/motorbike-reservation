@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:create]
       resources :motorbikes, only: %i[index show create destroy]
-      resources :reservations, only: %i[index create] do
+      resources :reservations, only: %i[index create destroy] do
         collection do
           get ':id', action: :show
         end
