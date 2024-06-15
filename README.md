@@ -60,7 +60,7 @@
 - Delete a Motorbike 
 
 
-# 🚀 Kanba board <a name="kanban-board"></a>
+# 🚀 Kanban board <a name="kanban-board"></a>
 
 👉 [Final capstone group project](https://github.com/MenendezON/book-an-appointment/projects/1)
 👉 [Kanban board screenshot](https://github.com/MenendezON/book-an-appointment/blob/main/screenshot-kanban-board.png)
