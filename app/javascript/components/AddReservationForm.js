@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -35,6 +36,7 @@ const AddReservationForm = ({ onAddReservation, defaultMotorbikeId }) => {
   ];
 
   const [formErrors, setFormErrors] = useState({});
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,6 +57,7 @@ const AddReservationForm = ({ onAddReservation, defaultMotorbikeId }) => {
         city: '',
         motorbike_id: '',
       });
+      navigate('/'); 
     } else {
       // Set form errors
       setFormErrors(errors);
@@ -118,7 +121,7 @@ const AddReservationForm = ({ onAddReservation, defaultMotorbikeId }) => {
               </select>
             </label>
           </div>
-          <button type="submit" className="btn-lg active">Reserve &gt;&gt;</button>
+          <button type="submit" className="btn-lg active" >Reserve &gt;&gt;</button>
         </form>
       </div>
     </>
