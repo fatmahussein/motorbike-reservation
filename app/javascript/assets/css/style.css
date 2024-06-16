@@ -22,6 +22,7 @@ body {
   color: var(--text);
   background-color: var(--white);
   overflow: hidden;
+  max-width: 100%;
 }
 
 a {
@@ -38,7 +39,7 @@ button {
   width: 100vw;
 }
 
-#root header {
+header {
   height: 100vh;
   width: 15vw;
   border-right: 1px solid var(--second);
@@ -64,7 +65,7 @@ header nav {
 header nav a {
   background-color: var(--white);
   color: var(--text);
-  padding: 20px;
+  padding: 10px;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -133,7 +134,7 @@ section > .cards {
   display: flex;
   flex-direction: column;
   text-align: center;
-  padding-top: 200px;
+  padding-top: 100px;
 }
 
 .cards > .top_header > h2 {
@@ -277,7 +278,6 @@ section.add-motorbike > div {
   width: 50%;
 }
 
-.add-reservation > div,
 .add-motorbike > div:first-child {
   width: 450px;
   height: auto;
@@ -286,9 +286,17 @@ section.add-motorbike > div {
 
 .add-reservation > div {
   border: 1px solid silver;
+  border: 1px solid silver;
   border-radius: 10px;
   padding: 25px;
-  height: auto;
+  height: 80%;
+  width: 60%;
+}
+
+.add-reservation {
+ display: flex;
+ justify-content: center;
+ align-items: center;
 }
 
 .add-reservation > div h2,
@@ -322,8 +330,8 @@ section.add-motorbike > div {
 }
 
 .add-motorbike > div:last-child > * {
-  width: 500px;
-  border: 1px solid silver;
+  width: 65%;
+  /* border: 1px solid silver; */
   padding: 5px;
   border-radius: 8px;
   margin: 5px 0;
@@ -408,10 +416,15 @@ section.add-motorbike > div {
   flex-direction: column;
   align-items: start;
   gap: 10px;
+  max-height: 62vh;
 }
 
 .nav-links.open {
   display: flex;
+}
+.space{
+  margin-left: 20px;
+  padding: 9px;
 }
 
 /* debut */
@@ -450,7 +463,41 @@ section.add-motorbike > div {
 }
 
 /* fin */
-
+@media only screen and (max-width: 990px){
+  header{
+    width: 22vw;
+  }
+  .nav-links{
+    font-size: 13px;
+  }
+  .add-motorbike > div:last-child {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  section.add-motorbike > div {
+    width: 30%;
+}
+.add-motorbike > div:last-child > *{
+  width: 65%;
+  border: none;
+  padding: 0;
+}
+.add-motorbike > div:first-child {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.add-motorbike > div:first-child.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 30px;
+}
+}
 @media only screen and (max-width: 768px) {
   body {
     overflow: auto;
@@ -499,7 +546,7 @@ section.add-motorbike > div {
     align-items: center;
   }
 
-  #root .form {
+  .form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -511,10 +558,11 @@ section.add-motorbike > div {
     color: #434b54;
   }
 
-  #root header {
+  header {
     width: 100%;
     display: flex;
     height: auto;
+    justify-content: space-between;
   }
 
   header .logo img {
@@ -609,7 +657,7 @@ section.add-motorbike > div {
   .add-reservation > div,
   .add-motorbike > div:first-child {
     width: 100%;
-    margin: 20px 10px;
+   
   }
 
   .add-reservation form select,
@@ -645,11 +693,10 @@ section.add-motorbike > div {
     align-items: flex-start;
     top: 60px;
     left: 0;
+    padding: 25px;
     width: 100%;
     background-color: rgba(51, 51, 51, 0.9);
-
-    /* semi-transparent dark background */
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(4px);
     z-index: 1;
     height: 100vh;
   }
