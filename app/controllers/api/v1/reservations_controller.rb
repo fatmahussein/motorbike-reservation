@@ -1,5 +1,6 @@
 class Api::V1::ReservationsController < ApplicationController
   before_action :authorize_request
+  before_action :set_reservation, only: [:destroy]
 
   def index
     @reservations = Reservation.includes(:motorbike, :user).where(user_id: @current_user)
