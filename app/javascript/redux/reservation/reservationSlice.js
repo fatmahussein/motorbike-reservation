@@ -56,17 +56,16 @@ export const cancelReservation = createAsyncThunk(
         },
       });
 
-      if (!response.ok) {
+      if (!response.status === 200) { // Fixed condition for checking response status
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
       return { id: reservationId };
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
-
 const initialState = {
   content: [],
   isLoading: false,
