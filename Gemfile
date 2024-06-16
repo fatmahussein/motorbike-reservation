@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '3.1.2'
+ruby '3.1.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.1.2'
@@ -55,6 +56,7 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'debug', '~> 1.9.0'
   gem 'debug', '~> 1.9.0'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
